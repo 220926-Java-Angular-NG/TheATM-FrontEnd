@@ -1,0 +1,23 @@
+
+
+<div>
+    <h3>Transfer Money</h3>
+    <form #transferForm = "ngForm" (ngSubmit)="onSubmit(transferForm.value)">
+    <label for="from">Tranfer money from account: </label>
+    <select id="from" name = "from" required [(ngModel)]="transaction.from">
+        <option *ngFor="let account of accounts" [value]="account">{{account}}</option>
+    </select>
+    <br>
+    <label for="to">Tranfer money to account: </label>
+    <select id="to" name = "to" required [(ngModel)]="transaction.to">
+        <option *ngFor="let account of accounts" [value]="account">{{account}}</option>
+    </select>
+    <br>
+    <label for="amount">Amount to be transferred:</label>
+    <br>
+    <input type="number" id="amount" min="0.01" placeholder="3.50"
+         [(ngModel)]="transaction.amount" name="amount" required>
+    <br>
+    <button type="submit" [disabled]="!transferForm.form.valid">Transfer</button>
+</form>
+</div>
