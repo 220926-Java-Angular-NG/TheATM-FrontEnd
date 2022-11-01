@@ -1,0 +1,26 @@
+<p>user-profile works!</p>
+
+<div>
+  <form>
+        <label for="email">Email</label>
+        <input  type="text" id="email" value = "Default@example.com" >
+        <br>
+        <!-- <label for = "username">Username</label>
+        <input type="text" id="username">
+        <br> -->
+        <label for="firstname">Firstname</label>
+        <input type="text" id="firstname" value = "John">
+        <br>
+        <label for="lastname">Lastname</label>
+        <input type="text" id="lastname" value = "Doe">
+        <br>
+        <label for = "password">Password</label>
+        <input  [attr.type] = "passWordVis" id="password" value = "Password">
+        <button (click)="passToggle()">{{show ? 'Hide' : 'Show'}}</button>
+        <br>
+        <label for="phonenum">Phone Number</label>
+        <input type="text" id ="phonenum" value = "281-555-5555">
+        <!--  Discuss how the phone number should be stored-->
+    </form>
+
+</div>
