@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransferMoneyComponent,
     DashboardComponent,
-    MessagesComponent
+    MessagesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
