@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup} from '@angular/forms';
 })
 
 export class RegisterComponent implements OnInit {
-  form: FormGroup;
   
   constructor() { }
 
@@ -16,11 +15,11 @@ export class RegisterComponent implements OnInit {
   }
 
   registerForm = new FormGroup({
-    firstName: new FormBuilder(""),
-    lastName: new FormBuilder(""),
-    email: new FormBuilder(""),
-    password: new FormBuilder(""),
-    phoneNum: new FormBuilder(""),
+    firstName: new FormControl(""),
+    lastName: new FormControl(""),
+    email: new FormControl(""),
+    password: new FormControl(""),
+    phoneNum: new FormControl(""),
   });
 
   registerSubmitted() {
