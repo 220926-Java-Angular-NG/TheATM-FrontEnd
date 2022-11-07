@@ -12,3 +12,12 @@
         </li>
     </ul>
 </div>
+<div>
+    <form #createNew="ngForm" (ngSubmit)="onSubmit(type.value)">
+        <select required id="type" name = "type" #type>
+            <option value="" disabled selected>Type of account:</option>
+            <option *ngFor="let choice of choices" value={{choice}}>{{choice}}</option>
+        </select>
+        <button type="submit" [disabled]="!createNew.form.valid">+</button>
+    </form>
+</div>
