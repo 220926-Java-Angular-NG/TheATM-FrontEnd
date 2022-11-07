@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ShoppingMallComponent } from './components/shopping-mall/shopping-mall.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http'
     TransferMoneyComponent,
     DashboardComponent,
     MessagesComponent,
-    RegisterComponent
+    ShoppingMallComponent
   ],
   imports: [
     BrowserModule,
