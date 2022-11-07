@@ -7,19 +7,23 @@ import { AppComponent } from './app.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ShoppingMallComponent } from './components/shopping-mall/shopping-mall.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransferMoneyComponent,
     DashboardComponent,
-    MessagesComponent
+    MessagesComponent,
+    ShoppingMallComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

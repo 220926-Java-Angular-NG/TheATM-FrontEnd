@@ -1,5 +1,14 @@
 <div>
-    <table>
-        
-    </table>
+    <ul>
+        <li *ngFor="let account of accounts" >
+            <a routerLink="" *ngIf="account.type==='Checking'">
+                <span class="badge">{{account.id}}</span>
+                {{account.type}} : {{account.total | currency}} 
+            </a>
+            <a routerLink="" *ngIf="account.type==='Savings'">
+                <span class="badge">{{account.id}}</span>
+                {{account.type}}  : {{account.total | currency}}
+            </a>
+        </li>
+    </ul>
 </div>
