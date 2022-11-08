@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Transaction } from '../components/transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,8 @@ import { Injectable } from '@angular/core';
 export class TransactionService {
 
   constructor() { }
+
+  transfer(trans:Transaction){
+    console.log(trans);
+  }
 }

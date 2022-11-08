@@ -8,9 +8,11 @@ import { Account } from '../account';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
   //todo: get accounts owned by the user
   accounts = this.accountService.accounts;
   loggedInUser = this.accountService.loggedInUser;
+  choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
   constructor(private accountService:AccountService) { }
 
@@ -21,6 +23,11 @@ export class DashboardComponent implements OnInit {
 
   getAccounts(){
     this.accountService.getAccounts().subscribe(accounts=>this.fetchedAccounts=accounts)
-    console.log(this.fetchedAccounts)
+    console.log(this.fetchedAccounts);
+  }
+
+  onSubmit(accType:string) {
+    let acc:Account = {id:0, type:accType, owner:this.loggedInUser.id};
+    this.accountService.createAcoount(JSON.stringify(acc));
   }
 }
