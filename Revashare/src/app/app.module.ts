@@ -10,6 +10,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingMallComponent } from './components/shopping-mall/shopping-mall.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DarkmodeComponent } from './components/darkmode/darkmode.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
     DashboardComponent,
     MessagesComponent,
     ShoppingMallComponent,
-    RegisterComponent
+    RegisterComponent,
+    DarkmodeComponent
   ],
   imports: [
     BrowserModule,
