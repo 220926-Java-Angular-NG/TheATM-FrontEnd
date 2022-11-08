@@ -10,7 +10,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingMallComponent } from './components/shopping-mall/shopping-mall.component';
 import { RegisterComponent } from './components/register/register.component';
-import { DarkmodeComponent } from './components/darkmode/darkmode.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -20,14 +21,15 @@ import { DarkmodeComponent } from './components/darkmode/darkmode.component';
     MessagesComponent,
     ShoppingMallComponent,
     RegisterComponent,
-    DarkmodeComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
