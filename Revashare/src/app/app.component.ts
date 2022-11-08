@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Revashare';
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+  }
 }
