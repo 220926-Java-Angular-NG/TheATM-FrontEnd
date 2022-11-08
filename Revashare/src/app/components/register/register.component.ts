@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -8,11 +9,15 @@ import { FormControl, FormGroup} from '@angular/forms';
 })
 
 export class RegisterComponent implements OnInit {
-  
-  constructor() { }
 
-  ngOnInit(): void {
+  
+  constructor(
+  ) { }
+
+  ngOnInit() {
   }
+
+
 
   registerForm = new FormGroup({
     firstName: new FormControl(""),

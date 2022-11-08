@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShoppingMallComponent } from './components/shopping-mall/shopping-mall.component';
 import { RegisterComponent } from './components/register/register.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,14 +20,15 @@ import { RegisterComponent } from './components/register/register.component';
     DashboardComponent,
     MessagesComponent,
     ShoppingMallComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
