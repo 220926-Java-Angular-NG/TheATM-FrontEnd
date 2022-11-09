@@ -46,9 +46,8 @@ export class AccountService {
       
   }
 
-  createAccount(newAcc: string) {
-    return this.http.post<Account>(`${this.accountsURL}`,JSON.stringify(newAcc),this.httpOptions).pipe(
-      tap(_=>this.log("Created new account")),
+  createAccount(newAcc: string):Observable<any> {
+    return this.http.post<Account>(`${this.accountsURL}`,newAcc,this.httpOptions).pipe(
       catchError(this.handleError('create account'))
     )
   }
