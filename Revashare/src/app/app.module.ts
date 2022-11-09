@@ -10,6 +10,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingMallComponent } from './components/shopping-mall/shopping-mall.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 
@@ -21,6 +23,8 @@ import { RegisterComponent } from './components/register/register.component';
     MessagesComponent,
     ShoppingMallComponent,
     RegisterComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
     
   ],
   imports: [

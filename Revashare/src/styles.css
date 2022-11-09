@@ -5,10 +5,10 @@ body {
     --btn-bg-color: rgb(11, 88, 160);
   }
   body.dark-theme {
-    --text-color: #eee;
+    --text-color: white;
     --bkg-color: #252222;
     --btn-txt-color: rgb(46, 43, 43);
-    --btn-bg-color: rgb(20, 211, 195);
+    --btn-bg-color: rgb(20, 119, 211);
   }
   
   body {
