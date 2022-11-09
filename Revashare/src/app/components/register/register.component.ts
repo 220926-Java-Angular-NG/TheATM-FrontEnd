@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import { Observable } from 'rxjs';
+import { RegisterService } from 'src/app/services/register.service';
+import { User } from 'src/app/components/user'
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,10 @@ import { Observable } from 'rxjs';
 
 export class RegisterComponent implements OnInit {
 
+  user:User 
   
   constructor(
-  ) { }
+  private registerService:RegisterService) { }
 
   ngOnInit() {
   }
@@ -27,8 +30,15 @@ export class RegisterComponent implements OnInit {
     phoneNum: new FormControl(""),
   });
 
+
+
   registerSubmitted() {
-    console.log(this.registerForm);
+    let newUser:User = {id:0, firstname: this.registerForm.value.firstName, lastname: this.registerForm.value.lastName, email: this.registerForm.value.email,
+    pass_word: this.registerForm.value.password, phoneNum: this.registerForm.value.phoneNum}
+    
+    this.registerService.createUser(newUser).subscribe(user => this.user = user);
+    
+    console.log(this.user);
   }
 
 }

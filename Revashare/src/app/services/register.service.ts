@@ -8,28 +8,36 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
 
-  constructor() { }
+  private authURL = 'http://localhost:8080/auth'
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+  }
+
+  constructor(private http: HttpClient) { }
+
+
 
   createUser(user: User): Observable<User> {
-    let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-    let options = {
-      headers: httpHeaders
-    };
-    return this.http.post<User>(this.url, user, options);
+    console.log(user)
+    let userString:string = JSON.stringify(user)
+    return this.http.post<User>(`${this.authURL}/register`, userString, this.httpOptions);
   }
 
-  postUser(user: User): Observable<HttpResponse<User>> {
-    let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.http.post<Users>(this.url, user, {
-      headers: httpHeaders,
-      observe: 'response'
-    });
-  }
+  // postUser(user: User): Observable<HttpResponse<User>> {
+  //   let httpHeaders = new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   });
+  //   return this.http.post<Users>(this.url, user, {
+  //     headers: httpHeaders,
+  //     observe: 'response'
+  //   });
+  // }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url);
-  }
+  // getAllUsers(): Observable<User[]> {
+  //   return this.http.get<User[]>(this.url);
+  // }
 
 }
