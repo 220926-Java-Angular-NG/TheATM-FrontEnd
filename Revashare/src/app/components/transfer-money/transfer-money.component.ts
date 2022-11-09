@@ -10,8 +10,9 @@ import { Transaction } from '../transaction';
 export class TransferMoneyComponent implements OnInit {
   //todo: replace with getAllAccountsByUser
   accounts = [1,2,3];
+  loggedInUser = this.transService.loggedInUser;
   submitted = false;
-  transaction:Transaction = {id:0, to:0, from:0, description:"Transfer", amount:0, date: ""};
+  transaction:Transaction = {id:0,linkedTo:{"id":this.loggedInUser}, to:{"id":0}, from:{"id":0}, description:"Transfer", amount:0, date_of_trans: ""};
   constructor(private transService:TransactionService) { }
 
   ngOnInit(): void {

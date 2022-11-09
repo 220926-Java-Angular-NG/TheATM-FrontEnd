@@ -28,6 +28,6 @@ export class DashboardComponent implements OnInit {
 
   onSubmit(accType:string) {
     let acc:Account = {id:0, type:accType, owner:this.loggedInUser.id};
-    this.accountService.createAcoount(JSON.stringify(acc));
+    this.accountService.createAccount(JSON.stringify(acc));
   }
 }

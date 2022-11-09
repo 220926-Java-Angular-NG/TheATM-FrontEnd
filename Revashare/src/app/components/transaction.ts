@@ -1,8 +1,9 @@
 export interface Transaction{
     id:number;
-    from:number;
-    to:number;
+    linkedTo:Object;
+    from:Object;
+    to:Object;
     description:string;
     amount:number;
-    date:string;
+    date_of_trans:string;
 }
