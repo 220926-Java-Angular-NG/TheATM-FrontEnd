@@ -1,6 +1,6 @@
 export interface Account{
     id:number;
     type:string;
-    owner:number;
+    owner:Object;
     total?:number;
 }
