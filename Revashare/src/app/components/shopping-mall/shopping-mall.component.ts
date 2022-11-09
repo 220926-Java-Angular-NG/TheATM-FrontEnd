@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { UserService } from 'src/app/services/user.service';
 import { Account } from '../account';
 import { Transaction } from '../transaction';
+import { User } from '../user';
 
 @Component({
   selector: 'app-shopping-mall',
@@ -9,28 +12,31 @@ import { Transaction } from '../transaction';
   styleUrls: ['./shopping-mall.component.css']
 })
 export class ShoppingMallComponent implements OnInit {
-
   loggedInUser={"id":0};
   shops:Account[] = [];
-  constructor(private accountService:AccountService) { }
+  transs:Transaction[] = [];
+  constructor(private accountService:AccountService, private transactionService:TransactionService) { }
 
   ngOnInit(): void {
     this.getShops();
   }
 
   getShops(){
-    this.shops = this.accountService.shops;
+    this.accountService.getShops().subscribe(shops=>this.shops=shops);
     this.loggedInUser = this.accountService.loggedInUser;
   }
 
   buy(shop: Account) {
+    //change "to" account to the logged in user's account -> add to account transaction page
     let trans:Transaction;
     if ((shop.type)==="Job"){
-      trans = {id:0, from:shop.id, to:this.loggedInUser.id, amount:250, date:"2022-11-06", description:shop.type}
+      trans = {id:0, linkedTo:{"id":1}, from:{"id":shop.id}, to:{"id":this.loggedInUser.id}, amount:250, date_of_trans:"2022-11-06", description:shop.type}
     } else {
       let transAmount = (Math.floor(Math.random() * 25) + 7.95)*-1;
-      trans = {id:0, from:shop.id, to:this.loggedInUser.id, amount:transAmount, date:"2022-11-06", description:shop.type}
+      trans = {id:0, linkedTo:{"id":1}, from:{"id":shop.id}, to:{"id":this.loggedInUser.id}, amount:transAmount, date_of_trans:"2022-11-06", description:shop.type}
     }
-    this.accountService.postTransaction(trans);
+    console.log(trans);
+    this.transactionService.postAuthTransaction(trans).subscribe(transs=>this.transs=transs);
+    console.log(this.transs)
   }
 }
