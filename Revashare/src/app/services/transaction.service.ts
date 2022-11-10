@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
+import { Account } from '../components/account';
 import { Transaction } from '../components/transaction';
 import { User } from '../components/user';
 import { AccountService } from './account.service';
@@ -25,10 +26,29 @@ export class TransactionService {
     console.log(trans);
   }
 
+  getTransactions(acc:Account):Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
+    return this.http.get<Transaction[]>(`${this.transURL}/linkedTo/${acc.id}`, httpOptions).pipe(
+      catchError(this.handleError<Transaction[]>('getTransactions',[]))
+    );
+
+  }
+
   postAuthTransaction(trans:Transaction):Observable<any>{
     let transString:String = JSON.stringify(trans);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
     console.log(transString)
-    return this.http.post<Transaction[]>(`${this.authURL}/transaction`,transString, this.tokenStorage.httpOptions).pipe(
+    return this.http.post<Transaction[]>(`${this.authURL}/transaction`,transString, httpOptions).pipe(
       catchError(this.handleError<Transaction[]>('getAccounts', []))
     );
   }

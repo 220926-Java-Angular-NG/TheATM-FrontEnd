@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { Account } from '../account';
 import { Transaction } from '../transaction';
 import { User } from '../user';
 
@@ -9,10 +11,17 @@ import { User } from '../user';
 })
 export class StatementsComponent implements OnInit {
 
-  transaction: Transaction;
-  constructor() { }
+  transactions: Transaction[];
+  @Input() acc?:Account;
+
+  constructor(private transactionService:TransactionService) { }
 
   ngOnInit(): void {
   }
 
+  getTransactions(){
+    
+    this.transactionService.getTransactions(this.acc).subscribe(transs=>this.transactions=transs);
+    console.log("getTransactions - "+ this.transactions[0])
+  }
 }
