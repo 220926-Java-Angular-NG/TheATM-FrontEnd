@@ -16,9 +16,8 @@ export class DashboardComponent implements OnInit {
   choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
   selectedAccount?:Account;
-  constructor(private accountService:AccountService, private tokenStorage:TokenStorageService) { }
 
-  
+  constructor(private accountService:AccountService, private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
   }

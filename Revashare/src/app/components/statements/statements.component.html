@@ -1,0 +1,15 @@
+<div *ngIf="transaction">
+    <h2>Transaction Statements</h2>
+    <div>
+        <label>id:</label>
+        <input [(ngModel)]="transaction.id" placeholder="0">
+    </div>
+    <div>
+        <label>description:</label>
+        <input [(ngModel)]="transaction.description" placeholder="n/a">
+    </div>
+    <div>
+        <label>amount</label>
+        <input [(ngModel)]="transaction.amount" placeholder="0.00">
+    </div>
+</div>
