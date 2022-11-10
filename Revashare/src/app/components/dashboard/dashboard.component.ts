@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Account } from '../account';
 
 @Component({
@@ -11,10 +12,10 @@ export class DashboardComponent implements OnInit {
 
   //todo: get accounts owned by the user
   accounts = this.accountService.accounts;
-  loggedInUser = this.accountService.loggedInUser;
+  loggedInUser = this.tokenStorage.getUser();
   choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
-  constructor(private accountService:AccountService) { }
+  constructor(private accountService:AccountService, private tokenStorage:TokenStorageService) { }
 
 
   ngOnInit(): void {

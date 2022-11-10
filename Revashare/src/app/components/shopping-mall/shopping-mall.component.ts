@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { UserService } from 'src/app/services/user.service';
 import { Account } from '../account';
@@ -12,10 +13,12 @@ import { User } from '../user';
   styleUrls: ['./shopping-mall.component.css']
 })
 export class ShoppingMallComponent implements OnInit {
-  loggedInUser={"id":0};
+  loggedInUser=this.tokenStorage.getUser();
   shops:Account[] = [];
   transs:Transaction[] = [];
-  constructor(private accountService:AccountService, private transactionService:TransactionService) { }
+  constructor(private accountService:AccountService, 
+    private transactionService:TransactionService,
+    private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
     this.getShops();
