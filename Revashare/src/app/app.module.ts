@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
@@ -14,7 +13,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { StatementsComponent } from './statements/statements.component';
+import { StatementsComponent } from './components/statements/statements.component';
 
 
 
@@ -31,7 +30,6 @@ import { StatementsComponent } from './statements/statements.component';
     LoginComponent,
     UserProfileComponent,
     StatementsComponent
-    
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ import { User } from '../user';
   styleUrls: ['./shopping-mall.component.css']
 })
 export class ShoppingMallComponent implements OnInit {
-  loggedInUser=this.tokenStorage.authResponse.user;
+  loggedInUser=this.tokenStorage.getLoggedInUser();
   shops:Account[] = [];
   transs:Transaction[] = [];
   @Input() acc?:Account

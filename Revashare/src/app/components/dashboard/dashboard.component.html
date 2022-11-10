@@ -2,14 +2,14 @@
     <button type="button" (click)="getAccounts()">Load  Accounts</button>
     <ul>
         <li *ngFor="let account of fetchedAccounts" (click)="onSelect(account)">
-            <a routerLink="" *ngIf="account.type==='Checking'">
+            <button type="button" *ngIf="account.type==='Checking'">
                 <span class="badge">{{account.id}}</span>
                 {{account.type}} : {{account.total | currency}} 
-            </a>
-            <a routerLink="" *ngIf="account.type==='Savings'" (click)="onSelect(account)">
+            </button>
+            <button type="button"  *ngIf="account.type==='Savings'" (click)="onSelect(account)">
                 <span class="badge">{{account.id}}</span>
                 {{account.type}}  : {{account.total | currency}}
-            </a>
+            </button>
         </li>
     </ul>
 </div>
@@ -22,5 +22,7 @@
         <button type="submit" [disabled]="!createNew.form.valid">+</button>
     </form>
 </div>
+<app-statements [acc]="selectedAccount"></app-statements>
 <app-shopping-mall [acc]="selectedAccount"></app-shopping-mall>
+
 
