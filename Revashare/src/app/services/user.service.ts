@@ -16,7 +16,6 @@ export class UserService {
   authURL = "http://localhost:8080/auth/"
   constructor(private http: HttpClient, private messageService:MessageService) { }
 
-  findOne(id: number): Observable<>
 
   private handleError<T>(operation = 'operation', result?:T){
     return (error:any):Observable<T> =>{

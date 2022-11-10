@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 import { User } from '../user';
 
 @Component({
@@ -10,9 +11,10 @@ export class UserProfileComponent implements OnInit {
 
   loggedinUser:User;
 
-  constructor() { }
+  constructor(private userService:UserService, private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
+    this.loggedinUser = this.
   }
 
 }
