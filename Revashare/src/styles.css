@@ -3,6 +3,7 @@ body {
     --bkg-color: #fff;
     --btn-txt-color: white;
     --btn-bg-color: rgb(11, 88, 160);
+    font-family: Syne;
   }
   body.dark-theme {
     --text-color: white;
@@ -15,9 +16,10 @@ body {
     background: var(--bkg-color);
   }
   
-  h1,
-  p {color: var(--text-color);
+  h1, p, h2, label {
+    color: var(--text-color);
   }
+
   button {
     padding: 10px;
     border: none;
