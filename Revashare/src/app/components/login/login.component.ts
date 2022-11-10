@@ -1,4 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { AuthReponse } from '../authResponse';
@@ -15,12 +17,12 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   authR?:AuthReponse;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, 
+    private tokenStorage: TokenStorageService,
+    private router:Router) { }
 
   ngOnInit() {
-    if (this.tokenStorage.authResponse){
-      this.isLoggedIn = true;
-    }
+    this.tokenStorage.signOut();
   }
 
   onSubmit() {
@@ -28,14 +30,15 @@ export class LoginComponent implements OnInit {
       data => 
         this.authR = data
     );
-    setTimeout(this.switchScreen,900);
+    setTimeout(()=>this.switchScreen(this.authR),900);
   }
 
-  switchScreen(){
-    console.log(this.authR.token);
-    if (this.authR){
-      this.tokenStorage.setAuth(this.authR);
-      window.location.replace("/dashboard");
+  switchScreen(authRes:AuthReponse){
+    console.log(authRes);
+    if(authRes){
+      localStorage.setItem("auth",  JSON.stringify(authRes));
+      this.router.navigateByUrl("/dashboard")
     }
+
   }
 }

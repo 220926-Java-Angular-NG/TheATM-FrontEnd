@@ -38,7 +38,7 @@ export class ShoppingMallComponent implements OnInit {
       trans = {id:0, linkedTo:{"id":1}, from:{"id":shop.id}, to:{"id":this.loggedInUser.id}, amount:transAmount, date_of_trans:"2022-11-06", description:shop.type}
     }
     console.log(trans);
-    this.transactionService.postAuthTransaction(trans).subscribe(transs=>this.transs=transs);
+    this.transactionService.postAuthTransaction(trans).subscribe(transs=>this.transs=transs)
     console.log(this.transs)
   }
 }

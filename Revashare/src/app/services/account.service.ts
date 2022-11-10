@@ -5,6 +5,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
 import { Transaction } from '../components/transaction';
 import { TokenStorageService } from './token-storage.service';
+import { User } from '../components/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,9 @@ export class AccountService {
 
   //todo: pull from server
   //accounts:Account[]=[{"id":5, "type":"Checking", "owner":2, "total":1234}, {"id":6, "type":"Savings", "owner":2, "total":3.50}].sort(function compareFn(a,b):number{return ((a.type>b.type)?1:- 1)} )
-  loggedInUser = this.tokenStorage.authResponse.user
   private accountsURL = 'http://localhost:8080/accounts';
   private authURL = 'http://localhost:8080/auth'
   // private transURL = 'api/transactions';
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json',
-      'Authorization':`Bearer ${this.tokenStorage.authResponse.token}`
-    })
-  }
-  
-
   
   ngOnInit():void{
   }
@@ -33,15 +25,22 @@ export class AccountService {
     private messageService:MessageService,
     private tokenStorage:TokenStorageService) { }
 
-  getAccounts(){
-    return this.http.get<Account[]>(`${this.accountsURL}?id=${this.loggedInUser.id}&getSum=true`).pipe(
+  getAccounts():Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
+    let loggedInUser = this.tokenStorage.getLoggedInUser()
+    return this.http.get<Account[]>(`${this.accountsURL}?id=${loggedInUser.id}&getSum=true`,httpOptions).pipe(
       tap(_ => this.log("fetched accounts")),
       catchError(this.handleError<Account[]>('getAccounts',[]))
     );
 
   }
 
-  getShops(){
+  getShops():Observable<any>{
     return this.http.get<Account[]>(`${this.authURL}/shops`).pipe(
       catchError(this.handleError<Account[]>('getAccounts', []))
       );
@@ -49,7 +48,13 @@ export class AccountService {
   }
 
   createAccount(newAcc: string):Observable<any> {
-    return this.http.post<Account>(`${this.accountsURL}`,newAcc,this.httpOptions).pipe(
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
+    return this.http.post<Account>(`${this.accountsURL}`,newAcc, httpOptions).pipe(
       catchError(this.handleError('create account'))
     )
   }

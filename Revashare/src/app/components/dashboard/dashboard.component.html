@@ -1,4 +1,5 @@
 <div>
+    <button type="button" (click)="getAccounts()">Load  Accounts</button>
     <ul>
         <li *ngFor="let account of fetchedAccounts" >
             <a routerLink="" *ngIf="account.type==='Checking'">
