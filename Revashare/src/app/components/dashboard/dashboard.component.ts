@@ -11,8 +11,8 @@ import { Account } from '../account';
 export class DashboardComponent implements OnInit {
 
   //todo: get accounts owned by the user
-  accounts = this.accountService.accounts;
-  loggedInUser = this.tokenStorage.getUser();
+  //accounts = this.accountService.accounts;
+  loggedInUser = this.tokenStorage.authResponse.user;
   choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
   
@@ -24,12 +24,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getAccounts(){
-    //this.accountService.getAccounts().subscribe(accounts=>this.fetchedAccounts=accounts)
-    //console.log(this.fetchedAccounts);
+    this.accountService.getAccounts().subscribe(accounts=>this.fetchedAccounts=accounts)
+    console.log(this.fetchedAccounts);
   }
 
   onSubmit(accType:string) {
     let acc:Account = {id:0, type:accType, owner:this.loggedInUser};
-    this.accountService.createAccount(JSON.stringify(acc)).subscribe(acc=>this.accounts.push(acc));
+    let accString = JSON.stringify(acc)
+    this.accountService.createAccount(accString).subscribe(newAcc=>this.fetchedAccounts.push(newAcc));
   }
 }

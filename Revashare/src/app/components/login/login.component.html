@@ -1,6 +1,6 @@
 <div class="col-md-12">
     <div class="brainer-container">
-      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit();" #f="ngForm" novalidate>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel"/>
@@ -15,9 +15,6 @@
           </button>
         </div>
       </form>
-      <p *ngIf="authResponse">{{authResponse.id}}</p>
-      <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in.
-      </div>
     </div>
+    <p *ngIf="authR">{{authR.token}}</p>
   </div>

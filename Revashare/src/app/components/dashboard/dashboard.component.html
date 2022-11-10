@@ -1,6 +1,6 @@
 <div>
     <ul>
-        <li *ngFor="let account of accounts" >
+        <li *ngFor="let account of fetchedAccounts" >
             <a routerLink="" *ngIf="account.type==='Checking'">
                 <span class="badge">{{account.id}}</span>
                 {{account.type}} : {{account.total | currency}} 
@@ -21,4 +21,5 @@
         <button type="submit" [disabled]="!createNew.form.valid">+</button>
     </form>
 </div>
+
 
