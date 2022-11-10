@@ -15,6 +15,7 @@
           </button>
         </div>
       </form>
+      <p *ngIf="authResponse">{{authResponse.id}}</p>
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in.
       </div>

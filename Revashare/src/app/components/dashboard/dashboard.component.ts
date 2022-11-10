@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getAccounts(){
-    this.accountService.getAccounts().subscribe(accounts=>this.fetchedAccounts=accounts)
-    console.log(this.fetchedAccounts);
+    //this.accountService.getAccounts().subscribe(accounts=>this.fetchedAccounts=accounts)
+    //console.log(this.fetchedAccounts);
   }
 
   onSubmit(accType:string) {

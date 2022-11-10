@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
 
-authResponse: AuthReponse;
+  authResponse: AuthReponse;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
@@ -29,4 +29,5 @@ authResponse: AuthReponse;
       data => 
         this.authResponse = data
     );
-}}
+  }
+}
