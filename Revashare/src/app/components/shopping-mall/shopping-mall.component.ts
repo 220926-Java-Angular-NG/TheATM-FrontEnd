@@ -13,7 +13,7 @@ import { User } from '../user';
   styleUrls: ['./shopping-mall.component.css']
 })
 export class ShoppingMallComponent implements OnInit {
-  loggedInUser=this.tokenStorage.getUser();
+  loggedInUser=this.tokenStorage.authResponse.user;
   shops:Account[] = [];
   transs:Transaction[] = [];
   constructor(private accountService:AccountService, 
@@ -26,7 +26,6 @@ export class ShoppingMallComponent implements OnInit {
 
   getShops(){
     this.accountService.getShops().subscribe(shops=>this.shops=shops);
-    this.loggedInUser = this.accountService.loggedInUser;
   }
 
   buy(shop: Account) {
