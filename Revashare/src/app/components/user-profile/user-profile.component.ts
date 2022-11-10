@@ -15,7 +15,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService:UserService, private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
-    this.loggedinUser = this.tokenStorage.getUser()
+    this.loggedinUser = this.tokenStorage.authResponse.user
   }
 
 }
