@@ -14,6 +14,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { StatementsComponent } from './statements/statements.component';
 
 
 
@@ -28,7 +29,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ResetPasswordComponent,
     ForgotPasswordComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    StatementsComponent
     
   ],
   imports: [
