@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -26,7 +27,8 @@ import { LoginComponent } from './components/login/login.component';
     RegisterComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent
     
   ],
   imports: [

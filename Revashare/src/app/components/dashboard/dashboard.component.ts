@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   loggedInUser = this.tokenStorage.authResponse.user;
   choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
+  
   constructor(private accountService:AccountService, private tokenStorage:TokenStorageService) { }
 
 
