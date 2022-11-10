@@ -2,22 +2,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { Transaction } from '../components/transaction';
+import { User } from '../components/user';
 import { AccountService } from './account.service';
 import { MessageService } from './message.service';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-  loggedInUser = this.accountService.loggedInUser;
   private authURL = 'http://localhost:8080/auth'
-  // private transURL = 'api/transactions';
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-  constructor(private accountService:AccountService, private messageService:MessageService,
+  private transURL = 'http://localhost:8080/transactions';
+  constructor(
+    private tokenStorage:TokenStorageService, private messageService:MessageService,
   private http:HttpClient) { }
 
   transfer(trans:Transaction){
@@ -28,12 +25,12 @@ export class TransactionService {
     console.log(trans);
   }
 
-  postAuthTransaction(trans:Transaction){
+  postAuthTransaction(trans:Transaction):Observable<any>{
     let transString:String = JSON.stringify(trans);
     console.log(transString)
-    return this.http.post<Transaction[]>(`${this.authURL}/transaction`,transString,this.httpOptions).pipe(
+    return this.http.post<Transaction[]>(`${this.authURL}/transaction`,transString, this.tokenStorage.httpOptions).pipe(
       catchError(this.handleError<Transaction[]>('getAccounts', []))
-      );
+    );
   }
 
   private handleError<T>(operation = 'operation', result?:T){

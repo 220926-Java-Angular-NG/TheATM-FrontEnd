@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { Transaction } from '../transaction';
 
@@ -10,10 +12,11 @@ import { Transaction } from '../transaction';
 export class TransferMoneyComponent implements OnInit {
   //todo: replace with getAllAccountsByUser
   accounts = [1,2,3];
-  loggedInUser = this.transService.loggedInUser;
   submitted = false;
-  transaction:Transaction = {id:0,linkedTo:{"id":this.loggedInUser}, to:{"id":0}, from:{"id":0}, description:"Transfer", amount:0, date_of_trans: ""};
-  constructor(private transService:TransactionService) { }
+  transaction:Transaction = {id:0,linkedTo:this.tokenStorage.authResponse.user, to:{"id":0}, from:{"id":0}, description:"Transfer", amount:0, date_of_trans: ""};
+  constructor(private transService:TransactionService,
+    private accountService:AccountService,
+    private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
   }
