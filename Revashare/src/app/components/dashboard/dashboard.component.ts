@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   //accounts = this.accountService.accounts;
   choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
+  selectedAccount?:Account;
   constructor(private accountService:AccountService, private tokenStorage:TokenStorageService) { }
 
   
@@ -32,5 +33,9 @@ export class DashboardComponent implements OnInit {
     let acc:Account = {id:0, type:accType, owner:loggedInUser};
     let accString = JSON.stringify(acc)
     this.accountService.createAccount(accString).subscribe(newAcc=>this.fetchedAccounts.push(newAcc));
+  }
+
+  onSelect(acc:Account):void{
+    this.selectedAccount=acc;
   }
 }
