@@ -5,4 +5,6 @@ export interface User{
     lastname:string;
     pass_word:string;
     phoneNum:string;
+    reset_password_token?:string;
+    
 }

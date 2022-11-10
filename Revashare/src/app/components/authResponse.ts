@@ -1,4 +1,6 @@
+import { User } from "./user";
+
 export interface AuthReponse{
-    id:number;
+    user:User;
     token: string;
 }

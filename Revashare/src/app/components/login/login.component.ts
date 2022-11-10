@@ -13,13 +13,12 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-
-  authResponse: AuthReponse;
+  authR?:AuthReponse;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
+    if (this.tokenStorage.authResponse){
       this.isLoggedIn = true;
     }
   }
@@ -27,8 +26,16 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.form).subscribe(
       data => 
-        this.authResponse = data
+        this.authR = data
     );
+    setTimeout(this.switchScreen,900);
   }
 
+  switchScreen(){
+    console.log(this.authR.token);
+    if (this.authR){
+      this.tokenStorage.setAuth(this.authR);
+      window.location.replace("/dashboard");
+    }
+  }
 }
