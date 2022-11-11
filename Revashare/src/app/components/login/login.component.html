@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="!isLoggedIn">
     <div class="brainer-container">
       <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit();" #f="ngForm" novalidate>
         <div class="form-group">
@@ -17,4 +17,6 @@
         </div>
       </form>
     </div>
+    <button (click)="setNeed()">Register</button>
   </div>
+  <app-register [needToRegister]="need"></app-register>

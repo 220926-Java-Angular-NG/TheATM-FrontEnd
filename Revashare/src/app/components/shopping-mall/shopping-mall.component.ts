@@ -38,8 +38,7 @@ export class ShoppingMallComponent implements OnInit {
       let transAmount = (Math.floor(Math.random() * 25) + 7.95)*-1;
       trans = {id:0, linkedTo:{"id":1}, from:{"id":shop.id}, to:this.acc, amount:transAmount, date_of_trans:"2022-11-06", description:shop.type}
     }
-    console.log(trans);
     this.transactionService.postAuthTransaction(trans).subscribe(transs=>this.transs=transs)
-    console.log(this.transs)
+
   }
 }

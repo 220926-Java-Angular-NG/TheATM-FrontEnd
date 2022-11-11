@@ -12,6 +12,7 @@ import { AuthReponse } from '../authResponse';
 })
 export class LoginComponent implements OnInit {
   form: any = {};
+  need = false;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -37,8 +38,15 @@ export class LoginComponent implements OnInit {
     console.log(authRes);
     if(authRes){
       localStorage.setItem("auth",  JSON.stringify(authRes));
-      this.router.navigateByUrl("/dashboard")
+      this.isLoggedIn=true;
     }
 
+  }
+  setNeed(){
+    if(this.need){
+      this.need=false;
+    }else{
+      this.need = true;
+    }
   }
 }

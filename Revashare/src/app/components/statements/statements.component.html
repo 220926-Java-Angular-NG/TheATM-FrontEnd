@@ -2,8 +2,33 @@
     <h2>Transaction Statements</h2>
     <button type="button" (click)="getTransactions()">Load Transactions</button>
     <li *ngFor="let transaction of transactions">
-        <p> From: {{transaction.from}}</p>
+        <p> From: {{transaction.from.id}} </p>
         <p> Description: {{transaction.description}} </p>
         <p> Amount: {{transaction.amount}}</p>
     </li>
+
+<button type="button" (click)="setSend()">Send Money?</button>
+<div *ngIf="sendMoney">
+    <div>
+        <h3>Send Money</h3>
+        <form #sendForm = "ngForm" (ngSubmit)="onSubmit(sendForm.value)">
+        <input type = "text" disabled placeholder={{acc.id}} name="sendFrom" [value]="acc.id">
+        <br>
+        <label for="sendTo">Tranfer money to account: </label>
+        <select id="to" name = "sendTo" required [(ngModel)]="sendTrans.sendTo">
+            <option *ngFor="let toAccount of allAccounts" [value]="toAccount">{{toAccount}}</option>
+        </select>
+        <br>
+        <label for="sendAmount">Amount to be transferred:</label>
+        <br>
+        <input type="number" id="amount" min="0.01" placeholder="3.50"
+             [(ngModel)]="sendTrans.sendAmount" name="sendAmount" required>
+        <br>
+        <br>
+        <input type="text" id = "description" name="sendDescription" required
+        [(ngModel)]="sendTrans.sendDesc">
+        <button type="submit" [disabled]="!sendForm.form.valid">Send</button>
+    </form>
+    </div>
+</div>
 </div>

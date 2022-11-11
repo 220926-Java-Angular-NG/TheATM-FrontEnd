@@ -22,8 +22,17 @@ export class TransactionService {
     console.log(trans);
   }
 
-  postTransaction(trans:Transaction){
-    console.log(trans);
+  postTransaction(data:Transaction, accId:number){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
+    let dataString = JSON.stringify(data);
+    return this.http.post<Transaction[]>(`${this.transURL}/linkedTo/${accId}`, dataString, httpOptions).pipe(
+      catchError(this.handleError<Transaction[]>('postTransaction',[]))
+    );
   }
 
   getTransactions(acc:Account):Observable<any>{

@@ -34,8 +34,20 @@ export class AccountService {
     }
     let loggedInUser = this.tokenStorage.getLoggedInUser()
     return this.http.get<Account[]>(`${this.accountsURL}?id=${loggedInUser.id}&getSum=true`,httpOptions).pipe(
-      tap(_ => this.log("fetched accounts")),
       catchError(this.handleError<Account[]>('getAccounts',[]))
+    );
+
+  }
+
+  getAccountIds():Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
+    return this.http.get<number[]>(`${this.accountsURL}/ids`,httpOptions).pipe(
+      catchError(this.handleError<number[]>('getAccountIds',[]))
     );
 
   }

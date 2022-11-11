@@ -5,12 +5,12 @@
     <form #transferForm = "ngForm" (ngSubmit)="onSubmit(transferForm.value, false)">
     <label for="from">Tranfer money from account: </label>
     <select id="from" name = "from" required [(ngModel)]="transaction.from">
-        <option *ngFor="let account of accounts" [value]="account">{{account}}</option>
+        <option *ngFor="let account of accounts" [value]="account">{{account.id}}</option>
     </select>
     <br>
     <label for="to">Tranfer money to account: </label>
     <select id="to" name = "to" required [(ngModel)]="transaction.to">
-        <option *ngFor="let account of accounts" [value]="account">{{account}}</option>
+        <option *ngFor="let account of accounts" [value]="account">{{account.id}}</option>
     </select>
     <br>
     <label for="amount">Amount to be transferred:</label>
@@ -23,7 +23,7 @@
 </div>
 <div *ngIf="submitted">
     <h5>Please confirm:</h5>
-    <p>{{transaction.amount | currency}} will be transferred from {{transaction.from}} to {{transaction.to}}</p>
+    <p>{{transaction.amount | currency}} will be transferred from {{transaction.from.id}} to {{transaction.to.id}}</p>
     <button type="button" (click)=" onSubmit(transferForm.value, true);transferForm.reset(); changeSubmitted()">I Agree</button>
 </div>
 
