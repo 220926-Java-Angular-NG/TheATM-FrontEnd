@@ -1,5 +1,4 @@
-
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="!isLoggedIn">
   <h1 id="loginheader">Login to Your Account</h1>
     <div class="brainer-container">
       <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit();" #f="ngForm" novalidate>
@@ -20,4 +19,6 @@
         </div>
       </form>
     </div>
+    <button (click)="setNeed()">Register</button>
   </div>
+  <app-register [needToRegister]="need"></app-register>

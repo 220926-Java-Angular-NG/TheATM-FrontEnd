@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { Account } from '../account';
 import { Transaction } from '../transaction';
 
 @Component({
@@ -11,11 +12,10 @@ import { Transaction } from '../transaction';
 })
 export class TransferMoneyComponent implements OnInit {
   //todo: replace with getAllAccountsByUser
-  accounts = [1,2,3];
+  @Input() accounts:Account[] = [];
   submitted = false;
-  transaction:Transaction = {id:0,linkedTo:this.tokenStorage.authResponse.user, to:{"id":0}, from:{"id":0}, description:"Transfer", amount:0, date_of_trans: ""};
+  transaction:Transaction = {id:0,linkedTo:{"id":0}, to:{"id":0}, from:{"id":0}, description:"Transfer", amount:0, date_of_trans: ""};
   constructor(private transService:TransactionService,
-    private accountService:AccountService,
     private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
@@ -23,16 +23,16 @@ export class TransferMoneyComponent implements OnInit {
 
   onSubmit(formData:JSON, confirmed:boolean):void{
     if (confirmed){
-      this.transService.transfer(this.transaction);
+      this.transService.postTransaction(this.transaction, this.transaction.to.id);
     } else {
       let keys = Object.keys(formData)
-      let values:number[] = Object.values(formData);
+      let values = Object.values(formData);
       for (let i=0; i<keys.length;i++){
         if (keys[i]=="from"){
           console.log(values[i])
-          this.transaction.from = values[i];
+          this.transaction.from = {id:values[i]};
         } else if (keys[i] == "to"){
-          this.transaction.to = values[i];
+          this.transaction.to = {id:values[i]};
         } else if (keys[i] == "amount"){
           this.transaction.amount = values[i];
         }

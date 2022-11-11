@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RegisterService } from 'src/app/services/register.service';
@@ -12,7 +12,8 @@ import { User } from 'src/app/components/user'
 
 export class RegisterComponent implements OnInit {
 
-  user:User 
+  user:User
+  @Input() needToRegister:boolean;
   
   constructor(
   private registerService:RegisterService) { }

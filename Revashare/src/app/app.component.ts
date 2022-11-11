@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,13 @@ export class AppComponent {
   title = 'Revashare';
   toggleDarkTheme(): void {
     document.body.classList.toggle('dark-theme');
+  }
+
+  constructor(private tokenStorage:TokenStorageService){}
+
+  signout(){
+    this.tokenStorage.signOut();
+    window.location.replace("");
+    
   }
 }
