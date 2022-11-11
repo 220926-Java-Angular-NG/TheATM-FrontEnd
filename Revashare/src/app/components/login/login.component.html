@@ -10,9 +10,10 @@
           <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required #password="ngModel"/>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block">
+          <button routerLink="/dashboard" class="btn btn-primary btn-block">
             Login
           </button>
+          <button routerLink="/forgotPassword">Forgot your password?</button>
         </div>
       </form>
     </div>

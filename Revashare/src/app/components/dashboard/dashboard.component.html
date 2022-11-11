@@ -22,6 +22,8 @@
         <button type="submit" [disabled]="!createNew.form.valid">+</button>
     </form>
 </div>
+<button routerLink="/shoppingMall">Visit the Shopping Mall</button>
+<button routerLink="/userProfile" routerLinkActive="active">User Profile</button>
 <app-statements [acc]="selectedAccount"></app-statements>
 <app-shopping-mall [acc]="selectedAccount"></app-shopping-mall>
 
