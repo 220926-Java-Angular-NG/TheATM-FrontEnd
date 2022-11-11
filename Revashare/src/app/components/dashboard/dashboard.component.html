@@ -2,6 +2,8 @@
 <br>
 <button type="button" (click)="getAccounts()">Load  Accounts</button>
 <div *ngIf="fetchedAccounts">
+<div class="dashboardcontainer" *ngIf="fetchedAccounts">
+    <h1 id="dashboardheader">Dashboard</h1>
     <ul>
         <li *ngFor="let account of fetchedAccounts" (click)="onSelect(account)">
             <button type="button" *ngIf="account.type==='Checking'">
@@ -15,7 +17,8 @@
         </li>
     </ul>
 </div>
-<div>
+
+<div class="dashboardcontainer2">
     <form #createNew="ngForm" (ngSubmit)="onSubmit(type.value)">
         <select required id="type" name = "type" #type>
             <option value="" disabled selected>Type of account:</option>
