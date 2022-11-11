@@ -1,5 +1,7 @@
+<br>
+<br>
+<button type="button" (click)="getAccounts()">Load  Accounts</button>
 <div *ngIf="fetchedAccounts">
-    <button type="button" (click)="getAccounts()">Load  Accounts</button>
     <ul>
         <li *ngFor="let account of fetchedAccounts" (click)="onSelect(account)">
             <button type="button" *ngIf="account.type==='Checking'">
@@ -24,8 +26,8 @@
 </div>
 <!--<button routerLink="/shoppingMall">Visit the Shopping Mall</button>-->
 <button routerLink="/userProfile" routerLinkActive="active">User Profile</button>
-<app-transfer-money [accounts]="fetchedAccounts"></app-transfer-money>
-<app-statements [acc]="selectedAccount"></app-statements>
+<app-transfer-money [accounts]="fetchedAccounts" [accountIds]="fetchedAccIds" [acc]="selectedAccount"></app-transfer-money>
+<app-statements [acc]="selectedAccount" [allAccounts]="fetchedAllAccIds"></app-statements>
 <app-shopping-mall [acc]="selectedAccount"></app-shopping-mall>
 
 

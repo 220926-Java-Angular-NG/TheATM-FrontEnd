@@ -13,8 +13,13 @@ import { Transaction } from '../transaction';
 export class TransferMoneyComponent implements OnInit {
   //todo: replace with getAllAccountsByUser
   @Input() accounts:Account[] = [];
+  @Input() accountIds:number[] =[];
+  @Input() acc:Account;
   submitted = false;
-  transaction:Transaction = {id:0,linkedTo:{"id":0}, to:{"id":0}, from:{"id":0}, description:"Transfer", amount:0, date_of_trans: ""};
+  transaction:Transaction = {id:0, linkedTo:{"id":0}, from:{"id":0}, to:{"id":0}, amount:0, date_of_trans:"", description:""};
+  newTransTo:number;
+  newTransFrom:number;
+  newTransAmount:number;
   constructor(private transService:TransactionService,
     private tokenStorage:TokenStorageService) { }
 
@@ -22,19 +27,26 @@ export class TransferMoneyComponent implements OnInit {
   }
 
   onSubmit(formData:JSON, confirmed:boolean):void{
+    console.log("FormData:")
+    console.log(formData)
     if (confirmed){
-      this.transService.postTransaction(this.transaction, this.transaction.to.id);
+      let newTrans:Transaction = {id:0, linkedTo:this.acc, from:{id:this.newTransFrom},
+      to:{id:this.newTransTo},
+      amount:this.newTransAmount,
+      description:"Transfer",
+      date_of_trans:"2022-11-11"}
+      this.transService.postTransaction(newTrans).subscribe(transs=>this.transaction=transs[1]);
     } else {
       let keys = Object.keys(formData)
       let values = Object.values(formData);
       for (let i=0; i<keys.length;i++){
         if (keys[i]=="from"){
           console.log(values[i])
-          this.transaction.from = {id:values[i]};
+          this.newTransFrom = values[i]
         } else if (keys[i] == "to"){
-          this.transaction.to = {id:values[i]};
+          this.newTransTo = values[i]
         } else if (keys[i] == "amount"){
-          this.transaction.amount = values[i];
+          this.newTransAmount = values[i]
         }
       }
     }

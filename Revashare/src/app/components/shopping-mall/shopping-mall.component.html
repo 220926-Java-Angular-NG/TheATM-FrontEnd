@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="acc">
     <ul>
         <li *ngFor="let shop of shops">
             <button type="button" (click)="buy(shop)" #shop>{{shop.type}}</button>

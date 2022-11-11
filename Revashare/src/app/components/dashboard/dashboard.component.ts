@@ -15,8 +15,9 @@ export class DashboardComponent implements OnInit {
   //accounts = this.accountService.accounts;
   choices:string[] = ["Checking", "Savings"]
   fetchedAccounts:Account[] = [];
+  fetchedAllAccIds:number[]=[];
   selectedAccount?:Account;
-
+  fetchedAccIds:number[]=[];
   constructor(private accountService:AccountService, private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
@@ -24,7 +25,10 @@ export class DashboardComponent implements OnInit {
 
   getAccounts(){
     this.accountService.getAccounts().subscribe(accounts=>this.fetchedAccounts=accounts)
-    console.log(this.fetchedAccounts);
+    this.accountService.getAccountIds().subscribe(ids=>this.fetchedAllAccIds=ids)
+    for (let account of this.fetchedAccounts){
+      this.fetchedAccIds.push(account.id);
+    }
   }
 
   onSubmit(accType:string) {

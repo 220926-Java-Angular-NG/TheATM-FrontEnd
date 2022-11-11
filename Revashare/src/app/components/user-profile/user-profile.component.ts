@@ -12,6 +12,7 @@ export class UserProfileComponent implements OnInit {
 
   form: any = {};
   loggedinUser:User;
+  newUserInfo:User;
 
   constructor(private userService:UserService, private tokenStorage:TokenStorageService) { }
 
@@ -26,7 +27,7 @@ export class UserProfileComponent implements OnInit {
     console.log(formdata)
       this.userService.saveUser(formdata).subscribe(
         user => 
-          this.loggedinUser = user);
+          this.newUserInfo = user);
   }
 
 }

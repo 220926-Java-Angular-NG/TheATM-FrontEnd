@@ -31,7 +31,9 @@ export class RegisterComponent implements OnInit {
     phoneNum: new FormControl(""),
   });
 
-
+  changeNeed(){
+    this.needToRegister=false;
+  }
 
   registerSubmitted() {
     let newUser:User = {id:0, firstname: this.registerForm.value.firstName, lastname: this.registerForm.value.lastName, email: this.registerForm.value.email,

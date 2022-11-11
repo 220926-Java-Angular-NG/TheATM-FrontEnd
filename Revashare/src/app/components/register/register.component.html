@@ -1,6 +1,6 @@
 <div class="registerForm" *ngIf="needToRegister">
     <h1 class="registerHeader">Register an Account</h1>
-    <div class="registerBody">
+    <div class="registerBody" *ngIf="!user">
         <form [formGroup]="registerForm" (ngSubmit)="registerSubmitted()">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
@@ -30,5 +30,6 @@
             </div>
         </form>
     </div>
+    <div *ngIf="user" (show)="changeNeed()"> User Created</div>
 </div>
 
