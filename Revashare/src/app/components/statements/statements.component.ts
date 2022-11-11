@@ -11,11 +11,12 @@ import { User } from '../user';
   styleUrls: ['./statements.component.css']
 })
 export class StatementsComponent implements OnInit {
-  allAccounts:number[] = [];
+  @Input() allAccounts:number[] = [];
   sendTrans={sendTo:0, sendFrom:0,sendAmount:0, sendDesc:""};
   sendMoney = false;
   transactions: Transaction[];
   @Input() acc?:Account;
+  inc:Transaction[]=[];
 
   constructor(private transactionService:TransactionService, 
     private accountService:AccountService) { }
@@ -24,7 +25,6 @@ export class StatementsComponent implements OnInit {
   }
 
   getTransactions(){
-    this.accountService.getAccountIds().subscribe(ids=>this.allAccounts=ids)
     this.transactionService.getTransactions(this.acc).subscribe(transs=>this.transactions=transs);
   }
 
@@ -37,23 +37,19 @@ export class StatementsComponent implements OnInit {
   }
   
   onSubmit(formData:JSON){
-    let newTrans:Transaction;
-    newTrans.from = this.acc;
+    let newTrans:Transaction = {id:0, linkedTo:this.acc, from:this.acc, to:{id:0}, amount:0, description:"", date_of_trans:"2022-11-11"};
     let keys = Object.keys(formData)
     let values = Object.values(formData);
       for (let i=0; i<keys.length;i++){
         if (keys[i]=="sendTo"){
-          newTrans.to = {id:values[i]};
+          newTrans.to.id= values[i];
         } else if (keys[i] == "sendDesc"){
           newTrans.description = values[i];
         } else if (keys[i] == "sendAmount"){
           newTrans.amount = values[i];
         }
       }
-
-    this.transactionService.postTransaction(newTrans,this.acc.id).subscribe(
-      transs=>{for(let trans of transs){
-        this.transactions.push(trans)}}
-      )
+    this.transactionService.postTransaction(newTrans).subscribe(
+      transs=>this.inc=transs)
   }
 }

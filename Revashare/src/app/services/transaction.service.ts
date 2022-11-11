@@ -22,7 +22,8 @@ export class TransactionService {
     console.log(trans);
   }
 
-  postTransaction(data:Transaction, accId:number){
+  postTransaction(data:Transaction){
+    console.log(data);
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',
@@ -30,7 +31,7 @@ export class TransactionService {
       })
     }
     let dataString = JSON.stringify(data);
-    return this.http.post<Transaction[]>(`${this.transURL}/linkedTo/${accId}`, dataString, httpOptions).pipe(
+    return this.http.post<Transaction[]>(`${this.transURL}  `, dataString, httpOptions).pipe(
       catchError(this.handleError<Transaction[]>('postTransaction',[]))
     );
   }

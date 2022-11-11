@@ -1,30 +1,31 @@
 
-
+<div *ngIf="acc">
+<div *ngIf="accountIds">
 <div>
     <h3>Transfer Money</h3>
-    <form #transferForm = "ngForm" (ngSubmit)="onSubmit(transferForm.value, false)">
+    <form #tf = "ngForm" (ngSubmit)="onSubmit(tf.value, false)" name="form" novalidate>
     <label for="from">Tranfer money from account: </label>
-    <select id="from" name = "from" required [(ngModel)]="transaction.from">
-        <option *ngFor="let account of accounts" [value]="account">{{account.id}}</option>
+    <select id="from" name = "from" required [(ngModel)]="transaction.from.id" #from="ngModel">
+        <option *ngFor="let accId of accountIds" [value]="accId">{{accId}}</option>
     </select>
     <br>
     <label for="to">Tranfer money to account: </label>
-    <select id="to" name = "to" required [(ngModel)]="transaction.to">
-        <option *ngFor="let account of accounts" [value]="account">{{account.id}}</option>
+    <select id="to" name = "to" required [(ngModel)]="transaction.to.id" #to="ngModel">
+        <option *ngFor="let accId of accountIds" [value]="accId">{{accId}}</option>
     </select>
     <br>
     <label for="amount">Amount to be transferred:</label>
     <br>
     <input type="number" id="amount" min="0.01" placeholder="3.50"
-         [(ngModel)]="transaction.amount" name="amount" required>
+         [(ngModel)]="transaction.amount" name="amount" required #amount="ngModel">
     <br>
-    <button type="submit" [disabled]="!transferForm.form.valid" (click)="changeSubmitted()">Transfer</button>
+    <button type="submit" [disabled]="!tf.form.valid" (click)="changeSubmitted()">Transfer</button>
 </form>
 </div>
 <div *ngIf="submitted">
     <h5>Please confirm:</h5>
     <p>{{transaction.amount | currency}} will be transferred from {{transaction.from.id}} to {{transaction.to.id}}</p>
-    <button type="button" (click)=" onSubmit(transferForm.value, true);transferForm.reset(); changeSubmitted()">I Agree</button>
+    <button type="button" (click)=" onSubmit(tf.value, true);tf.reset(); changeSubmitted()">I Agree</button>
 </div>
-
-
+</div>
+</div>

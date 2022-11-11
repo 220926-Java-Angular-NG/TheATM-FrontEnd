@@ -44,6 +44,7 @@ export class UserService {
         'Authorization':`Bearer ${this.tokenStorage.getToken()}`
       })
     }
-    return this.http.post<User>(`${this.userURL}update`, formdata, httpOptions);
+    let userString = JSON.stringify(formdata);
+    return this.http.post<User>(`${this.userURL}update`, userString, httpOptions);
   }
 }
