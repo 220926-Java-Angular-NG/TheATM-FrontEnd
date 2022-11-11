@@ -26,7 +26,10 @@
     </form>
 </div>
 
-<app-statements [acc]="selectedAccount" id="appstatementsid"></app-statements>
-<app-shopping-mall [acc]="selectedAccount" id="appshoppingmallid"></app-shopping-mall>
+
+<button routerLink="/shoppingMall">Visit the Shopping Mall</button>
+<button routerLink="/userProfile" routerLinkActive="active">User Profile</button>
+<app-statements [acc]="selectedAccount"></app-statements>
+<app-shopping-mall [acc]="selectedAccount"></app-shopping-mall>
 
 
