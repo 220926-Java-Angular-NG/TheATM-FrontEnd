@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
+import { User } from '../components/user';
 import { MessageService } from './message.service';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,10 @@ export class UserService {
     })
   }
   authURL = "http://localhost:8080/auth/"
-  constructor(private http: HttpClient, private messageService:MessageService) { }
+
+  userURL = "http://localhost:8080/users/"
+
+  constructor(private http: HttpClient, private messageService:MessageService, private tokenStorage:TokenStorageService) { }
 
 
   private handleError<T>(operation = 'operation', result?:T){
@@ -30,5 +35,15 @@ export class UserService {
   }
   private log(message:string){
     this.messageService.add(`UserService: ${message}`);
+  }
+
+  saveUser(formdata:JSON) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${this.tokenStorage.getToken()}`
+      })
+    }
+    return this.http.post<User>(`${this.userURL}update`, formdata, httpOptions);
   }
 }

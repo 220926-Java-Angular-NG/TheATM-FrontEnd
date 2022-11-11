@@ -1,27 +1,32 @@
 <div class="profilepage">
     <h1>Your profile information</h1>
+    <form name="profileform" #pf="ngForm" novalidate (ngSubmit)="pf.form.valid && onSubmit(pf.value);">
+    <div>
+        <button type = "button" (click)="getUser()"> Get User Info</button>
+    </div>
     <div>
         <label for = "firstname">First name: </label>
-        <input type = "text" name = "firstname" [(ngModel)]= "loggedinUser.firstname" >
+        <input type = "text" name = "firstname" [(ngModel)]= "loggedinUser.firstname" #firstname="ngModel">
     </div>
     <div>
         <label for = "lastname">Last name: </label>
-        <input type = "text" name = "lastname" [(ngModel)]= "loggedinUser.lastname" >
+        <input type = "text" name = "lastname" [(ngModel)]= "loggedinUser.lastname" #lastname="ngModel">
     </div>
     <div>
         <label for = "email">Email: </label>
-        <input type = "text" name = "email" [(ngModel)]= "loggedinUser.email" >
+        <input type = "text" name = "email" [(ngModel)]= "loggedinUser.email" #email="ngModel">
     </div>
     <div>
         <label for = "password">Password: </label>
-        <input type = "text" name = "password" [(ngModel)]= "loggedinUser.pass_word" >
+        <input type = "text" name = "pass_word" [(ngModel)]= "loggedinUser.pass_word" #pass_word="ngModel">
     </div>
     <div>
         <label for = "phonenum">Phone number: </label>
-        <input type = "text" name = "phonenum" [(ngModel)]= "loggedinUser.phoneNum" >
+        <input type = "text" name = "phoneNum" [(ngModel)]= "loggedinUser.phoneNum" #phoneNum="ngModel">
     </div>
     <div>
         <button type = "submit">Save Changes</button>
     </div>
     <button routerLink="/dashboard" routerLinkActive="active">Back to Dashboard</button>
+    </form>
 </div>
