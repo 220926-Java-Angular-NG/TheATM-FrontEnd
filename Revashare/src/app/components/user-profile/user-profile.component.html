@@ -2,7 +2,7 @@
     <h1>Your profile information</h1>
     <form name="profileform" #pf="ngForm" novalidate (ngSubmit)="pf.form.valid && onSubmit(pf.value);">
     <div>
-        <button type = "button" (click)="getUser()"> Get User Info</button>
+        <button id="infobutton" type = "button" (click)="getUser()"> Get User Info</button>
     </div>
     <div>
         <label for = "firstname">First name: </label>
@@ -25,7 +25,7 @@
         <input type = "text" name = "phoneNum" [(ngModel)]= "loggedinUser.phoneNum" #phoneNum="ngModel">
     </div>
     <div>
-        <button type = "submit">Save Changes</button>
+        <button id="savebutton" type = "submit">Save Changes</button>
     </div>
     </form>
     

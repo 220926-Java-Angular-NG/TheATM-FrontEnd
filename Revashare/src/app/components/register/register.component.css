@@ -1,3 +1,20 @@
 .registerForm {
     text-align:center;
 }
+
+#registerbutton {
+    margin-top: 30px;
+}
+
+#cancelbutton {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+label {
+    font-size: 25px;
+}
+
+h1 {
+    font-size: 45px;
+}
