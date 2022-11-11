@@ -1,0 +1,20 @@
+.profilepage {
+    text-align: center;
+}
+
+#savebutton {
+    margin-top: 30px;
+}
+
+#infobutton {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+label {
+    font-size: 25px;
+}
+
+h1 {
+    font-size: 45px;
+}
