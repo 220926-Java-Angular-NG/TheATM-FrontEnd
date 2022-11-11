@@ -10,7 +10,6 @@ import { StatementsComponent } from './components/statements/statements.componen
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:'login', pathMatch:'full'},
   {path: 'login', component:LoginComponent},
   {path: 'register', component:RegisterComponent},
   {path: 'forgotpassword', component:ForgotPasswordComponent},
