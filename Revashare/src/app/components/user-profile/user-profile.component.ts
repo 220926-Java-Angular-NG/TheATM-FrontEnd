@@ -10,12 +10,23 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  form: any = {};
   loggedinUser:User;
 
   constructor(private userService:UserService, private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
-    this.loggedinUser = this.tokenStorage.authResponse.user
+  }
+
+  getUser() {
+    this.loggedinUser = this.tokenStorage.getLoggedInUser()
+  }
+
+  onSubmit(formdata:JSON) {
+    console.log(formdata)
+      this.userService.saveUser(formdata).subscribe(
+        user => 
+          this.loggedinUser = user);
   }
 
 }
